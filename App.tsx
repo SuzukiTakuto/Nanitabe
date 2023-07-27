@@ -5,6 +5,8 @@ import { useFonts } from "expo-font";
 import { MPLUS1_400Regular } from "@expo-google-fonts/m-plus-1";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,18 +20,20 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="SelectSpot"
-          component={() => (
-            <SafeAreaView style={styles.container}>
-              <Top />
-            </SafeAreaView>
-          )}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SelectSpot"
+            component={() => (
+              <SafeAreaView style={styles.container}>
+                <Top />
+              </SafeAreaView>
+            )}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

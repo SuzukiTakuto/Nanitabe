@@ -1,29 +1,31 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
+import SelectSpot from "../topScreenComponents/SelectSpot";
+import { TopScreenStateType } from "../topScreenComponents/type";
 
 const Top = () => {
+  const isStation = useSelector((state: TopScreenStateType) => state.isStation);
+  const isPrice = useSelector((state: TopScreenStateType) => state.isPrice);
+
+  const switchComponent = () => {
+    if (!isStation && !isPrice) {
+      return <SelectSpot isStation={isStation} isPrice={isPrice} />;
+    } else if (isStation && !isPrice) {
+      return <Text>駅</Text>;
+    } else if (!isStation && isPrice) {
+      return <Text>料金</Text>;
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.selectTop}>どの辺で食べる？</Text>
-      <View style={styles.buttonContainer}>
-        <Button
-          title={"今いるところ"}
-          width={125}
-          fontSize={16}
-          onPress={() => alert("now")}
-        />
-        <Button
-          title={"別なところ"}
-          width={125}
-          fontSize={16}
-          onPress={() => alert("station")}
-        />
-      </View>
+      <Text style={styles.selectTop}>
+        {isPrice ? "いくらくらい？" : "どの辺で食べる？"}
+      </Text>
 
-      <View></View>
-
-      <View></View>
+      {switchComponent()}
     </View>
   );
 };
@@ -38,26 +40,6 @@ const styles = StyleSheet.create({
     fontFamily: "MPLUS1_400Regular",
     fontSize: 24,
     marginBottom: 60,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  button: {
-    width: 125,
-    height: 40,
-    backgroundColor: "#FAF3F3",
-    borderWidth: 1,
-    borderColor: "#6750A4",
-    borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10,
-  },
-  buttonText: {
-    fontFamily: "MPLUS1_400Regular",
-    fontSize: 16,
-    color: "#6750A4",
   },
 });
 
