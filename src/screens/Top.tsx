@@ -4,6 +4,8 @@ import Button from "../components/Button";
 import { useSelector } from "react-redux";
 import SelectSpot from "../topScreenComponents/SelectSpot";
 import { TopScreenStateType } from "../topScreenComponents/type";
+import SelectStation from "../topScreenComponents/SelectStation";
+import SelectPrice from "../topScreenComponents/SelectPrice";
 
 const Top = () => {
   const isStation = useSelector((state: TopScreenStateType) => state.isStation);
@@ -13,9 +15,9 @@ const Top = () => {
     if (!isStation && !isPrice) {
       return <SelectSpot isStation={isStation} isPrice={isPrice} />;
     } else if (isStation && !isPrice) {
-      return <Text>駅</Text>;
+      return <SelectStation />;
     } else if (!isStation && isPrice) {
-      return <Text>料金</Text>;
+      return <SelectPrice />;
     }
   };
 

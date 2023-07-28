@@ -8,18 +8,13 @@ import { togglePrice, toggleStation } from "./slice";
 const SelectSpot: React.FC<TopScreenStateType> = ({ isStation, isPrice }) => {
   const dispatch = useDispatch();
 
-  const test = () => {
-    console.log(isPrice);
-    dispatch(togglePrice());
-  };
-
   return (
     <View style={styles.buttonContainer}>
       <Button
         title={"今いるところ"}
         width={125}
         fontSize={16}
-        onPress={() => test()}
+        onPress={() => dispatch(toggleStation())}
       />
       <Button
         title={"別なところ"}
