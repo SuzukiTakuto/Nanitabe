@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TextInput } from "react-native";
+import React from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { setStation, setPrice } from "../topScreenComponents/slice";
 
@@ -15,15 +15,28 @@ const Input = (props: Props) => {
   return (
     <View>
       <TextInput
+        style={styles.input}
         onChangeText={(text) =>
           inputType === "station"
             ? dispatch(setStation(text))
             : dispatch(setPrice(Number(text)))
         }
         placeholder="駅名"
+        placeholderTextColor={"#6750A4"}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    width: 270,
+    height: 55,
+    borderWidth: 1,
+    borderColor: "#6750A4",
+    borderRadius: 4,
+    padding: 16,
+  },
+});
 
 export default Input;
