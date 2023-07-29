@@ -5,14 +5,18 @@ type Props = {
   onPress: () => void;
   title: string;
   width: number;
+  height: number;
   fontSize: number;
 };
 
 const Button = (props: Props) => {
-  const { onPress, title, width, fontSize } = props;
+  const { onPress, title, width, fontSize, height } = props;
 
   return (
-    <Pressable style={[styles.button, { width: width }]} onPress={onPress}>
+    <Pressable
+      style={[styles.button, { width: width, height: height }]}
+      onPress={onPress}
+    >
       <Text style={[styles.buttonText, { fontSize: fontSize }]}>{title}</Text>
     </Pressable>
   );
@@ -20,7 +24,6 @@ const Button = (props: Props) => {
 
 const styles = StyleSheet.create({
   button: {
-    height: 40,
     backgroundColor: "#FAF3F3",
     borderWidth: 1,
     borderColor: "#6750A4",

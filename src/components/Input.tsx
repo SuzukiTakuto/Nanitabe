@@ -21,7 +21,7 @@ const Input = (props: Props) => {
             ? dispatch(setStation(text))
             : dispatch(setPrice(Number(text)))
         }
-        placeholder="駅名"
+        placeholder={placeholder}
         placeholderTextColor={"#6750A4"}
       />
     </View>

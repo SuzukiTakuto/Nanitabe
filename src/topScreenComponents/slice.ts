@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isStation: false,
     isPrice: false,
+    isNow: false,
     station: "",
     price: 0,
 }
@@ -17,6 +18,9 @@ export const topScreenSlice = createSlice({
         togglePrice: (state) => {
             state.isPrice = !state.isPrice;
         },
+        toggleNow: (state, action: PayloadAction<boolean>) => {
+            state.isNow = action.payload;
+        },
         setStation: (state, action: PayloadAction<string>) => {
             state.station = action.payload;
         },
@@ -26,4 +30,4 @@ export const topScreenSlice = createSlice({
     },
 });
 
-export const { toggleStation, togglePrice, setStation, setPrice } = topScreenSlice.actions;
+export const { toggleStation, togglePrice, toggleNow, setStation, setPrice } = topScreenSlice.actions;

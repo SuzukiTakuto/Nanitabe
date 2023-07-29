@@ -13,7 +13,7 @@ const Top = () => {
 
   const switchComponent = () => {
     if (!isStation && !isPrice) {
-      return <SelectSpot isStation={isStation} isPrice={isPrice} />;
+      return <SelectSpot />;
     } else if (isStation && !isPrice) {
       return <SelectStation />;
     } else if (!isStation && isPrice) {
