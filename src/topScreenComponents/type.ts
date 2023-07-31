@@ -4,4 +4,5 @@ export type TopScreenStateType = {
     isNow: boolean;
     station: string;
     price: number;
+    hotpepperDatas: HotpepperDataType[];
   };

@@ -7,7 +7,7 @@ import { TopScreenStateType } from "../topScreenComponents/type";
 import SelectStation from "../topScreenComponents/SelectStation";
 import SelectPrice from "../topScreenComponents/SelectPrice";
 
-const Top = () => {
+const Top = ({}) => {
   const isStation = useSelector((state: TopScreenStateType) => state.isStation);
   const isPrice = useSelector((state: TopScreenStateType) => state.isPrice);
 

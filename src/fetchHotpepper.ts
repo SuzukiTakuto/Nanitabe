@@ -1,13 +1,10 @@
-import { useSelector } from "react-redux";
-import { TopScreenStateType } from "./topScreenComponents/type";
 import { HOTPEPPER_API_KEY } from "@env";
+import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
-export const fetchData = async () => {
-    console.log("fetch")
+export const fetchData = async (isNow: boolean, station: string) => {
+    const xp = new XMLParser();
+
     let reqURL = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${HOTPEPPER_API_KEY}&`;
-
-    const isNow = useSelector((state: TopScreenStateType) => state.isNow);
-    const station = useSelector((state: TopScreenStateType) => state.station);
 
     if (isNow) {
         
@@ -17,9 +14,10 @@ export const fetchData = async () => {
 
     try {
         const res = await fetch(reqURL);
-        const data = await res.json();
-        console.log(data);
+        const data = await res.text();
+        const jObj = xp.parse(data);
+        return jObj.results.shop;
     } catch (error) {
-        console.log(error);
+        console.log(`error: ${error}`);
     }
 }

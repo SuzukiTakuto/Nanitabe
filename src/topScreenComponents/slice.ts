@@ -1,11 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import {TopScreenStateType} from "./type";
 
-const initialState = {
+const initialState: TopScreenStateType = {
     isStation: false,
     isPrice: false,
     isNow: false,
     station: "",
     price: 0,
+    hotpepperDatas: [],
 }
 
 export const topScreenSlice = createSlice({
@@ -27,7 +29,10 @@ export const topScreenSlice = createSlice({
         setPrice: (state, action: PayloadAction<number>) => {
             state.price = action.payload;
         },
+        setHotpepperDatas: (state, action: PayloadAction<HotpepperDataType[]>) => {
+            state.hotpepperDatas = action.payload;
+        }
     },
 });
 
-export const { toggleStation, togglePrice, toggleNow, setStation, setPrice } = topScreenSlice.actions;
+export const { toggleStation, togglePrice, toggleNow, setStation, setPrice, setHotpepperDatas } = topScreenSlice.actions;
