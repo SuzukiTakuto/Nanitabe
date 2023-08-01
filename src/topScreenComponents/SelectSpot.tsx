@@ -3,14 +3,27 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import Button from "../components/Button";
 import { TopScreenStateType } from "./type";
 import { useDispatch } from "react-redux";
-import { togglePrice, toggleStation, toggleNow } from "./slice";
+import { togglePrice, toggleStation, toggleNow, setStartCoords } from "./slice";
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 
 const SelectSpot: React.FC = () => {
   const dispatch = useDispatch();
 
-  const selectNow = () => {
-    dispatch(toggleNow(true));
-    dispatch(togglePrice());
+  const selectNow = async () => {
+    let { status } = await Permissions.askAsync(
+      Permissions.LOCATION_FOREGROUND
+    );
+    if ("granted" === status) {
+      let {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync({});
+      dispatch(toggleNow(true));
+      dispatch(togglePrice());
+      setStartCoords({ latitude, longitude });
+    } else {
+      return;
+    }
   };
 
   const selectAnother = () => {

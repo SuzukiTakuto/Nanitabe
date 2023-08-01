@@ -4,7 +4,7 @@ import { XMLParser, XMLBuilder } from "fast-xml-parser";
 export const fetchData = async (isNow: boolean, station: string) => {
     const xp = new XMLParser();
 
-    let reqURL = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${HOTPEPPER_API_KEY}&`;
+    let reqURL = `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${HOTPEPPER_API_KEY}&range=2&`;
 
     if (isNow) {
         

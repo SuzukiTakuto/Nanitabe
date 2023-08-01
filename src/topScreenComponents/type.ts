@@ -1,3 +1,5 @@
+import { HotpepperDataType } from "../hotpepperDataType";
+
 export type TopScreenStateType = {
     isStation: boolean;
     isPrice: boolean;
@@ -5,4 +7,8 @@ export type TopScreenStateType = {
     station: string;
     price: number;
     hotpepperDatas: HotpepperDataType[];
+    startCoords: {
+        latitude: number;
+        longitude: number;
+    }
   };

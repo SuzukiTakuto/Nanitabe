@@ -23,7 +23,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
           <Stack.Screen
             name="SelectSpot"
             component={() => (
@@ -35,9 +39,9 @@ export default function App() {
           <Stack.Screen
             name="Map"
             component={() => (
-              <SafeAreaView style={styles.container}>
+              <View style={styles.container}>
                 <Map />
-              </SafeAreaView>
+              </View>
             )}
           />
         </Stack.Navigator>

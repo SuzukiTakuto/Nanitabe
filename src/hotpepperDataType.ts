@@ -1,4 +1,4 @@
-type HotpepperDataType = {
+export type HotpepperDataType = {
     name: string;
     photo: {
         mobile: {
@@ -12,4 +12,6 @@ type HotpepperDataType = {
     urls: {
         pc: string;
     },
+    lat: number;
+    lng: number;
 }
