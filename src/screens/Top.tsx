@@ -1,6 +1,11 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import Button from "../components/Button";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 import { useSelector } from "react-redux";
 import SelectSpot from "../topScreenComponents/SelectSpot";
 import { TopScreenStateType } from "../topScreenComponents/type";
@@ -22,13 +27,14 @@ const Top = ({}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.selectTop}>
-        {isPrice ? "いくらくらい？" : "どの辺で食べる？"}
-      </Text>
-
-      {switchComponent()}
-    </View>
+    <KeyboardAvoidingView behavior="padding">
+      <View style={styles.container}>
+        <Text style={styles.selectTop}>
+          {isPrice ? "いくらくらい？" : "どの辺で食べる？"}
+        </Text>
+        {switchComponent()}
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

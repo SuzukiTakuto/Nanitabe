@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Button from "../components/Button";
-import { TopScreenStateType } from "./type";
 import { useDispatch } from "react-redux";
 import { togglePrice, toggleStation, toggleNow, setStartCoords } from "./slice";
 import * as Location from "expo-location";
-import * as Permissions from "expo-permissions";
 
 const SelectSpot: React.FC = () => {
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
+
   const selectNow = async () => {
-    let { status } = await Permissions.askAsync(
-      Permissions.LOCATION_FOREGROUND
-    );
+    setLoading(true);
+    let { status } = await Location.requestForegroundPermissionsAsync();
     if ("granted" === status) {
-      let {
-        coords: { latitude, longitude },
-      } = await Location.getCurrentPositionAsync({});
+      const coords = await Location.getCurrentPositionAsync({});
+      const startCoords = {
+        latitude: coords.coords.latitude,
+        longitude: coords.coords.longitude,
+      };
       dispatch(toggleNow(true));
+      dispatch(setStartCoords(startCoords));
       dispatch(togglePrice());
-      setStartCoords({ latitude, longitude });
+      setLoading(false);
     } else {
       return;
     }
@@ -32,21 +34,27 @@ const SelectSpot: React.FC = () => {
   };
 
   return (
-    <View style={styles.buttonContainer}>
-      <Button
-        title={"今いるところ"}
-        width={125}
-        height={40}
-        fontSize={16}
-        onPress={() => selectNow()}
-      />
-      <Button
-        title={"別なところ"}
-        width={125}
-        height={40}
-        fontSize={16}
-        onPress={() => selectAnother()}
-      />
+    <View>
+      {loading ? (
+        <Text>loading...</Text>
+      ) : (
+        <View style={styles.buttonContainer}>
+          <Button
+            title={"今いるところ"}
+            width={125}
+            height={40}
+            fontSize={16}
+            onPress={() => selectNow()}
+          />
+          <Button
+            title={"別なところ"}
+            width={125}
+            height={40}
+            fontSize={16}
+            onPress={() => selectAnother()}
+          />
+        </View>
+      )}
     </View>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { useDispatch } from "react-redux";
 import { setStation, setPrice } from "../topScreenComponents/slice";
 
@@ -23,6 +23,7 @@ const Input = (props: Props) => {
         }
         placeholder={placeholder}
         placeholderTextColor={"#6750A4"}
+        keyboardType={inputType === "station" ? "default" : "number-pad"}
       />
     </View>
   );

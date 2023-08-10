@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MapView, { Marker } from "react-native-maps";
 import { TopScreenStateType } from "../topScreenComponents/type";
 import { HotpepperDataType } from "../hotpepperDataType";
+import Shop from "../components/Shop";
 
 const Map = () => {
   const [data, setData] = useState<HotpepperDataType>({} as HotpepperDataType);
@@ -20,7 +21,9 @@ const Map = () => {
       return datas[randomIndex];
     };
 
-    setData(getRandomData());
+    if (datas.length !== 0) {
+      setData(getRandomData());
+    }
   }, [datas]);
 
   // data.lat と data.lng が有効な場合にマップを描画する
@@ -30,19 +33,25 @@ const Map = () => {
         <MapView
           style={styles.map}
           region={{
-            latitude: data.lat,
-            longitude: data.lng,
+            latitude: data.lat || coords.latitude,
+            longitude: data.lng || coords.longitude,
             latitudeDelta: 0.02,
             longitudeDelta: 0.02,
           }}
         >
           <Marker
             coordinate={{
-              latitude: data.lat,
-              longitude: data.lng,
+              latitude: data.lat || coords.latitude,
+              longitude: data.lng || coords.longitude,
             }}
+            identifier="ShopMarker"
           />
         </MapView>
+        {datas.length !== 0 ? (
+          <Shop data={data} />
+        ) : (
+          <Text>データがありません</Text>
+        )}
       </View>
     );
   } else {
@@ -60,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+    position: "relative",
   },
   map: {
     flex: 1,

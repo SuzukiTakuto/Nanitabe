@@ -28,22 +28,20 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen
-            name="SelectSpot"
-            component={() => (
+          <Stack.Screen name="SelectSpot">
+            {() => (
               <SafeAreaView style={styles.container}>
                 <Top />
               </SafeAreaView>
             )}
-          />
-          <Stack.Screen
-            name="Map"
-            component={() => (
+          </Stack.Screen>
+          <Stack.Screen name="Map">
+            {() => (
               <View style={styles.container}>
                 <Map />
               </View>
             )}
-          />
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
