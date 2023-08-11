@@ -5,6 +5,7 @@ import MapView, { Marker } from "react-native-maps";
 import { TopScreenStateType } from "../topScreenComponents/type";
 import { HotpepperDataType } from "../hotpepperDataType";
 import Shop from "../components/Shop";
+import HotpepperLog from "../components/HotpepperLog";
 
 const Map = () => {
   const [data, setData] = useState<HotpepperDataType>({} as HotpepperDataType);
@@ -47,11 +48,14 @@ const Map = () => {
             identifier="ShopMarker"
           />
         </MapView>
+
         {datas.length !== 0 ? (
           <Shop data={data} />
         ) : (
           <Text>データがありません</Text>
         )}
+
+        <HotpepperLog />
       </View>
     );
   } else {
