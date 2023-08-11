@@ -8,6 +8,7 @@ const HotpepperLog = () => {
         <Image
           source={require("../../assets/hotpepper-m.png")}
           style={styles.image}
+          testID="hotpepper-logo"
         />
       </View>
     </View>
