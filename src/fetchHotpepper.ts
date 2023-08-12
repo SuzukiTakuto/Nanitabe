@@ -17,16 +17,15 @@ export const fetchData = async (isNow: boolean, station: string, price: number, 
     }
 
     try {
-        console.log(reqURL)
         const res = await fetch(reqURL);
         const data = await res.text();
         const jObj = xp.parse(data);
-        const shops = jObj.results.shop.filter((shop: any) => {
+        const beforeFilterShops = Array.isArray(jObj.results.shop) ? jObj.results.shop : [jObj.results.shop];
+        const shops = beforeFilterShops.filter((shop: any) => {
             const maxPrice = getMaxPrice(shop.budget.name);
             
             return maxPrice <= price;
         })
-        console.log(shops.length)
         return shops;
     } catch (error) {
         console.log(`error: ${error}`);
