@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import MapView, { Marker } from "react-native-maps";
+import { BannerAdSize } from "react-native-google-mobile-ads";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../pageType";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,7 @@ import Shop from "../components/Shop";
 import NoData from "../components/NoData";
 import HotpepperLog from "../components/HotpepperLog";
 import Button from "../components/Button";
+import Admob from "../components/Admob";
 
 const Map = () => {
   const [data, setData] = useState<HotpepperDataType>({} as HotpepperDataType);
@@ -87,6 +89,8 @@ const Map = () => {
       {datas.length !== 0 ? <Shop data={data} /> : <NoData />}
 
       <HotpepperLog />
+
+      <Admob size={BannerAdSize.BANNER} />
     </View>
   );
 };

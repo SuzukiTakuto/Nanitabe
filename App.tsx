@@ -37,9 +37,9 @@ export default function App() {
           </Stack.Screen>
           <Stack.Screen name="Map">
             {() => (
-              <View style={styles.container}>
+              <SafeAreaView style={styles.container}>
                 <Map />
-              </View>
+              </SafeAreaView>
             )}
           </Stack.Screen>
         </Stack.Navigator>

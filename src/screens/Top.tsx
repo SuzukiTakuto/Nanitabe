@@ -7,10 +7,12 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { useSelector } from "react-redux";
+import { BannerAdSize } from "react-native-google-mobile-ads";
 import SelectSpot from "../topScreenComponents/SelectSpot";
 import { TopScreenStateType } from "../topScreenComponents/type";
 import SelectStation from "../topScreenComponents/SelectStation";
 import SelectPrice from "../topScreenComponents/SelectPrice";
+import Admob from "../components/Admob";
 
 const Top = ({}) => {
   const isStation = useSelector((state: TopScreenStateType) => state.isStation);
@@ -29,6 +31,7 @@ const Top = ({}) => {
   return (
     <KeyboardAvoidingView behavior="padding">
       <View style={styles.container}>
+        <Admob size={BannerAdSize.BANNER} />
         <Text style={styles.selectTop}>
           {isPrice ? "いくらくらい？" : "どの辺で食べる？"}
         </Text>
@@ -43,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
   },
   selectTop: {
     fontFamily: "MPLUS1_400Regular",
