@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  Alert,
+  Linking,
+} from "react-native";
 import Button from "../components/Button";
 import { useDispatch } from "react-redux";
 import { togglePrice, toggleStation, toggleNow, setStartCoords } from "./slice";
@@ -23,8 +30,15 @@ const SelectSpot: React.FC = () => {
       dispatch(setStartCoords(startCoords));
       dispatch(togglePrice());
       setLoading(false);
-    } else {
-      return;
+    } else if ("denied" === status) {
+      Alert.alert(
+        "位置情報の許可が必要です",
+        "アプリが位置情報へのアクセスを求めています。",
+        [
+          { text: "キャンセル", style: "cancel" },
+          { text: "設定へ移動", onPress: () => Linking.openSettings() },
+        ]
+      );
     }
   };
 

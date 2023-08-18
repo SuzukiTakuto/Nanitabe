@@ -25,6 +25,7 @@ const Shop: React.FC<Props> = ({ data }) => {
   const isNow = useSelector((state: TopScreenStateType) => state.isNow);
   const isPrice = useSelector((state: TopScreenStateType) => state.isPrice);
 
+  console.log(data);
   const shopName = data.name.replace(/[\s ]+/g, "\n");
 
   const goHtpepper = () => {

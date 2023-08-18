@@ -37,9 +37,10 @@ export default function App() {
           </Stack.Screen>
           <Stack.Screen name="Map">
             {() => (
-              <SafeAreaView style={styles.container}>
+              <View style={styles.container}>
+                <SafeAreaView />
                 <Map />
-              </SafeAreaView>
+              </View>
             )}
           </Stack.Screen>
         </Stack.Navigator>
@@ -54,5 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAF3F3",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 16,
+    marginBottom: 0,
   },
 });

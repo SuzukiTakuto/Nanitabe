@@ -22,6 +22,7 @@ import Admob from "../components/Admob";
 const Map = () => {
   const [data, setData] = useState<HotpepperDataType>({} as HotpepperDataType);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isNoShop, setIsNoShop] = useState<boolean>(false);
 
   const coords = useSelector((state: TopScreenStateType) => state.startCoords);
   const datas = useSelector(
@@ -49,9 +50,20 @@ const Map = () => {
       return datas[randomIndex];
     };
 
-    if (datas.length !== 0) {
-      setData(getRandomData());
-      setIsLoading(false);
+    console.log("==================");
+    console.log(datas);
+    console.log("==================");
+
+    if (datas !== undefined) {
+      if (datas.length !== 0) {
+        setData(getRandomData());
+        setIsLoading(false);
+        setIsNoShop(false);
+      } else {
+        setIsNoShop(true);
+      }
+    } else {
+      setIsNoShop(true);
     }
   }, [datas]);
 
@@ -79,14 +91,14 @@ const Map = () => {
       >
         <Marker
           coordinate={{
-            latitude: data.lat || coords.latitude,
-            longitude: data.lng || coords.longitude,
+            latitude: data !== undefined ? data.lat : coords.latitude,
+            longitude: data !== undefined ? data.lng : coords.longitude,
           }}
           identifier="ShopMarker"
         />
       </MapView>
 
-      {datas.length !== 0 ? <Shop data={data} /> : <NoData />}
+      {!isNoShop ? <Shop data={data} /> : <NoData />}
 
       <HotpepperLog />
 

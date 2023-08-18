@@ -1,6 +1,5 @@
 import { HOTPEPPER_API_KEY } from "@env";
 import { XMLParser } from "fast-xml-parser";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export const fetchData = async (isNow: boolean, station: string, price: number, coords: {
     latitude: number;
@@ -34,7 +33,6 @@ export const fetchData = async (isNow: boolean, station: string, price: number, 
 
 const getMaxPrice = (priceRange: string) => {
     const price = priceRange.split("円")[0].split("～")[1];
-    const price2 = priceRange.split("円")[0].split("～")[0];
 
     return Number(price);
 }

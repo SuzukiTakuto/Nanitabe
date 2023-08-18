@@ -15,8 +15,8 @@ export default function Admob(props: Props) {
   const unitId = TestIds.BANNER;
 
   const adUnitID = Platform.select({
-    ios: "",
-    android: "",
+    ios: "ca-app-pub-2039388741272451/8521333988",
+    android: "ca-app-pub-2039388741272451/8521333988",
   });
 
   if (!adUnitID) {
