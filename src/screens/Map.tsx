@@ -50,10 +50,6 @@ const Map = () => {
       return datas[randomIndex];
     };
 
-    console.log("==================");
-    console.log(datas);
-    console.log("==================");
-
     if (datas !== undefined) {
       if (datas.length !== 0) {
         setData(getRandomData());

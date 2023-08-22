@@ -2,7 +2,7 @@
   "expo": {
     "name": "何食",
     "slug": "Nanitabe",
-    "version": "1.3.0",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -49,6 +49,6 @@
     }
   },
   "react-native-google-mobile-ads": {
-    "ios_app_id": "ca-app-pub-2039388741272451~9303631297"
+    "ios_app_id": "ca-app-pub-3382119718476117~9035800307"
   }
 }
